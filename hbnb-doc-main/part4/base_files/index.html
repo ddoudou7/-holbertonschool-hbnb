@@ -42,5 +42,25 @@
   <footer>
     <p>© All rights reserved.</p>
   </footer>
+
+  <script>
+    // Fonction pour lire un cookie
+    function getCookie(name) {
+      const cookies = document.cookie.split(';');
+      for (let cookie of cookies) {
+        const [key, value] = cookie.trim().split('=');
+        if (key === name) return value;
+      }
+      return null;
+    }
+
+    // Vérifie si token présent
+    document.addEventListener('DOMContentLoaded', () => {
+      const token = getCookie('token');
+      if (!token) {
+        window.location.href = 'login.html';
+      }
+    });
+  </script>
 </body>
 </html>
