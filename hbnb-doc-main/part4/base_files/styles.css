@@ -1,0 +1,27 @@
+.place-details {
+  margin: 20px;
+}
+.place-info {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+}
+.review-card {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+}
+.add-review {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 20px auto;
+}
+.add-review textarea,
+.add-review input,
+.add-review button {
+  margin-bottom: 10px;
+  padding: 8px;
+}
