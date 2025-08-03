@@ -1,64 +1,96 @@
-# HBNB Web Client – Part 4
+# HBnB Web Client – Part 4
 
-This project is a simple **web front-end** built using **HTML5, CSS3, and JavaScript (ES6)** to interact with a Flask API.
+A lightweight HTML / CSS / JavaScript (ES6) front-end that consumes a **mock Flask API** to list places, display detailed information, and let authenticated users post reviews.
 
-## 📁 Folder Structure
+---
+
+## 📁 Project Tree
 
 part4/
-├── base_files/
-├── doc_images/
-├── manual_review/
-├── images/
-├── index.html
-├── login.html
-├── place.html
-├── add_review.html
-├── styles.css
-├── scripts.js
+├─ base_files/
+│ ├─ index.html # list of places + price filter
+│ ├─ login.html # mock login form
+│ ├─ place.html # place details + reviews
+│ ├─ scripts.js # all front-end logic
+│ └─ styles.css # optional basic styles
+├─ mock_api.py # tiny Flask back-end (places, login, reviews)
+└─ … # doc_images/, manual_review/, etc.
 
-markdown
+yaml
 Copier
 Modifier
 
+---
+
 ## 🌐 Pages
 
-- `index.html` – Homepage with list of places.
-- `login.html` – Login page with authentication form.
-- `place.html` – Details view of a specific place.
-- `add_review.html` – Form for submitting reviews (authenticated users only).
+| File            | Purpose |
+|-----------------|---------|
+| **index.html**  | Home page – shows every place, price filter. |
+| **login.html**  | Simple auth – any *email = password* combo returns a fake JWT. |
+| **place.html**  | Detailed view – name, price, description, amenities, reviews. If logged in, the “Add review” form is shown. |
 
-## ⚙️ Technologies
+---
 
-- **HTML5** – Page structure  
-- **CSS3** – Styling and layout  
-- **JavaScript (ES6)** – Dynamic interactions, API calls  
-- **Fetch API** – To communicate with the Flask backend
+## ⚙️ Tech Stack
 
-## 🔐 Authentication
+* **HTML5 / CSS3**
+* **JavaScript ES6** (Fetch API)
+* **Flask** *(mock back-end only)*
+* Zero build tools, zero external deps.
 
-- Login required for:
-  - Posting reviews
-  - Accessing some pages (redirection to login if not authenticated)
+---
 
-## 🔄 API Interaction
+## 🔐 Authentication (mock)
 
-- API base URL (example): `http://127.0.0.1:5000/api/v1/`
-- Uses `fetch()` for all HTTP requests.
-- Auth tokens stored in `localStorage`.
+* `POST /login` → `{ "access_token": "fake-jwt-token-123456" }`
+* Token stored in **cookie** `token`.
+* Presence of the cookie controls display of the *Add review* form.
 
-## 🛠 Setup & Usage
+---
 
-1. Clone the repo  
-2. Serve the files locally (e.g. with Live Server or simple Python server)  
-3. Make sure the Flask API is running  
-4. Open `index.html` in your browser
+## 🔄 Mock API Endpoints
 
-## ⚠️ CORS Warning
+| Verb | Route | Description |
+|------|-------|-------------|
+| `POST` | `/login` | Returns a fake JWT if `email == password`. |
+| `GET`  | `/api/places` | All places. |
+| `GET`  | `/api/places/<id>` | Full details, amenities, reviews. |
+| `POST` | `/api/places/<id>/reviews` | Create a review (`Authorization: Bearer <token>`). |
 
-If running locally, CORS issues may occur. Ensure your Flask API includes:
+---
 
-```python
-from flask_cors import CORS
-CORS(app)
-📌 Author
-GitHub: Mr Philips
+## ▶️ Quick Start (30 s)
+
+```bash
+# 1) start the mock API
+cd part4
+python mock_api.py            # → http://127.0.0.1:5000
+
+# 2) serve the front-end (second terminal)
+cd base_files
+python -m http.server 5500    # → http://127.0.0.1:5500
+Walk-through:
+
+Open http://127.0.0.1:5500/index.html
+
+Click Login → enter any credentials
+
+Back on the index page (Login link disappears)
+
+Open a place → try Add review
+
+CORS is handled via from flask_cors import CORS inside mock_api.py.
+
+✅ Completed Features (Tasks 03 & 04)
+Extract place_id from the URL.
+
+Check JWT in cookies; hide or show the Add review form accordingly.
+
+GET / POST calls send Authorization: Bearer <token> when present.
+
+Instant review list update after successful POST.
+
+👤 Author
+Mr Philips
+https://github.com/ddoudou7
