@@ -3,32 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>List of Places</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css"><!-- si tu en as un -->
 </head>
 <body>
   <header>
     <img src="images/logo.png" class="logo" alt="App Logo">
+    <!-- le SEUL lien avec l’id login-link -->
     <a href="login.html" class="login-button" id="login-link">Login</a>
   </header>
 
   <nav>
     <a href="index.html">Home</a>
+    <!-- deuxième lien login SANS id -->
     <a href="login.html">Login</a>
   </nav>
 
   <main>
     <h1>Places</h1>
 
-    <!-- Filtre par prix -->
+    <!-- filtre prix -->
     <label for="price-filter">Filter by price:</label>
     <select id="price-filter">
+      <option value="All">All</option>
       <option value="10">$10 or less</option>
       <option value="50">$50 or less</option>
       <option value="100">$100 or less</option>
-      <option value="All">All</option>
     </select>
 
-    <!-- Section dynamique pour afficher les places -->
+    <!-- rempli par le JS -->
     <section id="places-list"></section>
   </main>
 
@@ -36,6 +38,7 @@
     <p>© All rights reserved.</p>
   </footer>
 
+  <!-- scripts.js se trouve dans le même dossier -->
   <script src="scripts.js"></script>
 </body>
 </html>

@@ -2,48 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Place Details</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Place details – HBnB</title>
 </head>
 <body>
-  <header>
-    <img src="images/logo.png" class="logo" alt="App Logo">
-    <a href="login.html" class="login-button">Login</a>
-  </header>
+  <!-- détails injectés ici -->
+  <section id="place-details"></section>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
-  </nav>
+  <!-- formulaire review (caché si non loggé) -->
+  <section id="add-review" style="display:none;">
+    <h3>Ajouter un avis</h3>
+    <form id="review-form">
+      <textarea id="review-text" rows="4" cols="40"
+                placeholder="Votre avis…" required></textarea><br>
+      <button type="submit">Envoyer</button>
+    </form>
+  </section>
 
-  <main>
-    <section class="place-details">
-      <h1>Beach House</h1>
-      <div class="place-info">
-        <p><strong>Host:</strong> John Doe</p>
-        <p><strong>Price:</strong> $150/night</p>
-        <p><strong>Description:</strong> A beautiful house by the beach with amazing views.</p>
-        <p><strong>Amenities:</strong> WiFi, Kitchen, Air conditioning</p>
-      </div>
-
-      <h2>Reviews</h2>
-      <div class="review-card">
-        <p>"Fantastic location and super clean!"</p>
-        <small>– Sarah, 5 stars</small>
-      </div>
-
-      <div class="review-card">
-        <p>"Loved the sunsets. Will come back!"</p>
-        <small>– Mike, 4 stars</small>
-      </div>
-
-      <!-- Authenticated user only -->
-      <a href="add_review.html">Add a Review</a>
-    </section>
-  </main>
-
-  <footer>
-    <p>© All rights reserved.</p>
-  </footer>
+  <!-- scripts.js est dans le même dossier que cette page -->
+  <script src="scripts.js"></script>
 </body>
 </html>
